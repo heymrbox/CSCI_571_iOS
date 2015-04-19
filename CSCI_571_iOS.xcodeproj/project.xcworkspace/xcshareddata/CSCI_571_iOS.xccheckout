@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7F6053C1-089D-40DA-90D1-8A2D86827DAF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CSCI_571_iOS</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2FC5D434645FCA3C39187CAE36E6B4ED6C7D8402</key>
+		<string>https://github.com/weiwei9101/CSCI_571_iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CSCI_571_iOS.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2FC5D434645FCA3C39187CAE36E6B4ED6C7D8402</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/weiwei9101/CSCI_571_iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2FC5D434645FCA3C39187CAE36E6B4ED6C7D8402</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2FC5D434645FCA3C39187CAE36E6B4ED6C7D8402</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CSCI_571_iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
