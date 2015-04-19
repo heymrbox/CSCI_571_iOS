@@ -16,6 +16,9 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
     @IBOutlet var sortByText: UITextField!
     @IBOutlet var sortBy: UIPickerView! = UIPickerView()
     
+    @IBOutlet var clearButton: UIButton!
+    @IBOutlet var submitButton: UIButton!
+    @IBOutlet var errorLabel: UILabel!
     
     let sortByOptions = ["Best Match", "Price: highest first", "Price + Shipping: highest first", "Price + Shipping: lowest first"];
     
@@ -24,9 +27,15 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         sortBy.delegate = self;
         sortBy.dataSource = self;
         
-        sortByText.text = sortByOptions[0];
-        self.sortByText.inputView = sortBy;
+        initialization();
+        
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func initialization(){
+        sortByText.text = sortByOptions[0];
+        sortByText.inputView = sortBy;
+        errorLabel.text = "";
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
@@ -42,14 +51,8 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        sortByText.text = "\(sortByOptions[row])";
+        sortByText.text = "\(sortByOptions[row])";        
     }
-    
-    func textFieldShouldBeginEditing(sortByText: UITextField) -> Bool {
-        sortBy.hidden = false
-        return false
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning();

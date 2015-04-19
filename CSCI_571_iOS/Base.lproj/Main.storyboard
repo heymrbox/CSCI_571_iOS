@@ -115,21 +115,34 @@
                                             <rect key="frame" x="0.0" y="0.0" width="365" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxU-Tt-tA1">
-                                                    <rect key="frame" x="159" y="32" width="60" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BxU-Tt-tA1">
+                                                    <rect key="frame" x="152" y="17" width="60" height="30"/>
+                                                    <size key="titleShadowOffset" width="0.0" height="-1"/>
                                                     <state key="normal" title="Clear">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleColor" red="0.0" green="0.50196081399917603" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wX7-gO-Qjl">
-                                                    <rect key="frame" x="227" y="32" width="60" height="30"/>
-                                                    <state key="normal" title="Search">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wX7-gO-Qjl">
+                                                    <rect key="frame" x="237" y="17" width="60" height="30"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <size key="titleShadowOffset" width="0.0" height="-1"/>
+                                                    <state key="normal" title="Search"/>
                                                 </button>
-                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVE-CL-j3g">
-                                                    <rect key="frame" x="87" y="-46" width="190" height="162"/>
-                                                </pickerView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="94" id="qcc-Gt-G5j">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qcc-Gt-G5j" id="GL4-gM-EdU">
+                                            <rect key="frame" x="0.0" y="0.0" width="365" height="94"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmb-un-lK7">
+                                                    <rect key="frame" x="0.0" y="-10" width="365" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -147,10 +160,13 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="365" height="667"/>
                     <connections>
+                        <outlet property="clearButton" destination="BxU-Tt-tA1" id="MiH-xS-2Xz"/>
+                        <outlet property="errorLabel" destination="Rmb-un-lK7" id="rPR-sI-0II"/>
                         <outlet property="keywordText" destination="AWE-vv-OoE" id="Xw1-bZ-8n8"/>
                         <outlet property="priceFromText" destination="FNk-ig-pTD" id="apQ-hQ-jb2"/>
                         <outlet property="priceToText" destination="lxB-Ih-VBy" id="Rzg-Uu-ruF"/>
                         <outlet property="sortByText" destination="oOx-RW-XpA" id="ygR-L0-MFq"/>
+                        <outlet property="submitButton" destination="wX7-gO-Qjl" id="Ng8-op-MHq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FsN-fL-GAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
