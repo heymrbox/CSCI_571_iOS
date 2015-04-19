@@ -36,7 +36,63 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         sortByText.text = sortByOptions[0];
         sortByText.inputView = sortBy;
         errorLabel.text = "";
+        errorLabel.textColor = UIColor.redColor();
+        
+//        keywordText.addTarget(self, action: "keywordDidChange:", forControlEvents: UIControlEvents.EditingChanged);
+//        priceFromText.addTarget(self, action: "minPriceDidChange:", forControlEvents: UIControlEvents.EditingChanged);
+//        priceToText.addTarget(self, action: "maxPriceDidChange:", forControlEvents: UIControlEvents.EditingChanged);
+        clearButton.addTarget(self, action: "clearForm", forControlEvents: UIControlEvents.TouchUpInside);
+        submitButton.addTarget(self, action: "validation", forControlEvents: UIControlEvents.TouchUpInside);
     }
+    
+//    func keywordDidChange(textField: UITextField) {
+//        if(keywordText.text == ""){
+//            errorLabel.text = "Please enter a keyword";
+//        }else{
+//            errorLabel.text = "";
+//        }
+//        
+//    }
+    
+//    func minPriceDidChange(textField: UITextField) {
+//        NSLog("min");
+//    }
+//    
+//    func maxPriceDidChange(textField: UITextField) {
+//        NSLog("max");
+//    }
+    
+    func clearForm(){
+        keywordText.text = "";
+        priceFromText.text = "";
+        priceToText.text = "";
+        sortByText.text = sortByOptions[0];
+        errorLabel.text = "";
+    }
+    
+    func validation(){
+        let emptyKeyword = "Please enter a keyword\n";
+        let notNumber = "Price should be valid decimal number\n";
+        let notInteger = "Price should be positive integer\n";
+        let notBiggerThan = "Max price should be bigger than Min price\n";
+        let other = "No Results Found\n";
+        
+        var error = "";
+        
+        if(keywordText.text == ""){
+            error += emptyKeyword;
+        }
+        if(priceFromText.text.toInt() == nil || priceToText.text.toInt() == nil){
+            error += notNumber;
+        }
+        println(error);
+        
+        errorLabel.text = error;
+
+    }
+    
+    
+    /* ---  Handle sortBy options --- */
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1;
