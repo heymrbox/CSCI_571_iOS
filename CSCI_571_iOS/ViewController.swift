@@ -81,35 +81,87 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         var error = "";
         var minPrice = (priceFromText.text as NSString).floatValue;
         var maxPrice = (priceToText.text as NSString).floatValue;
+        var nFlag = false;
+        var pFlag = false;
+        var flag = true;
         
-        println(minPrice);
         
         if(keywordText.text == ""){
             error += emptyKeyword;
+            flag = false;
         }
         
-        if(priceToText.text == ""){
-            maxPrice = 2147483647.0;
-        }
-        
-        println(maxPrice);
-        
-        if(minPrice != 0.0 && maxPrice != 0.0){
-            
-            if(minPrice < 0 || maxPrice < 0){
+        if(priceFromText.text != ""){
+            if(minPrice == 0.0 && !nFlag){
+                error += notNumber;
+                nFlag = true;
+                flag = false;
+            }
+            if(minPrice < 0 && !pFlag){
                 error += notInteger;
+                pFlag = true;
+                flag = false;
             }
-            if(minPrice > maxPrice){
-                error += notBiggerThan;
-            }
-        }else if(priceFromText.text != "" || priceToText.text != ""){
-            
-            error += notNumber;
         }
-      
+        
+        if(priceToText.text != ""){
+            if(maxPrice == 0.0 && !nFlag){
+                error += notNumber;
+                nFlag = true;
+                flag = false;
+            }
+            if(maxPrice < 0 && !pFlag){
+                error += notInteger;
+                pFlag = true;
+                flag = false;
+            }
+        }
+        
+        if(priceFromText.text != "" && priceToText.text != ""){
+            if(minPrice != 0.0 && maxPrice != 0.0){
+                if(minPrice > maxPrice){
+                    error += notBiggerThan;
+                    flag = false;
+                }
+            }
+        }
+        if(flag){
+            sendRequestToServer();
+        }
+        
         
         errorLabel.text = error;
 
+    }
+    
+    func sendRequestToServer(){
+        println("Request sending");
+        
+        var additional = "?keywords=iphone+6&lowestPrice=&highestPrice=&shipping_time=&sortBy=BestMatch&resultsPerPage=5&inputPageNum=1";
+        var urlToGo = "http://csci571-weiwei-env.elasticbeanstalk.com/ebay_search.php" + additional;
+        
+        var url: NSURL = NSURL(string: urlToGo)!;
+        var request: NSMutableURLRequest = NSMutableURLRequest(URL: url);
+        let urlSession = NSURLSession.sharedSession();
+        
+        
+        let jsonQuery = urlSession.dataTaskWithURL(url, completionHandler: { data, response, error -> Void in
+            if (error != nil) {
+                println(error.localizedDescription)
+            }
+            var err: NSError?
+            
+            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
+            if (err != nil) {
+                println("JSON Error \(err!.localizedDescription)")
+            }
+            println(jsonResult);
+//            dispatch_async(dispatch_get_main_queue(), {
+//                dateLabel.text = jsonDate
+//                timeLabel.text = jsonTime
+//            })
+        })
+        jsonQuery.resume();
     }
     
     
