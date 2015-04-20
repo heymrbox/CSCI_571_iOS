@@ -22,11 +22,13 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
     
     let sortByOptions = ["Best Match", "Price: highest first", "Price + Shipping: highest first", "Price + Shipping: lowest first"];
     
+    
     override func viewDidLoad() {
         super.viewDidLoad();
+        
         sortBy.delegate = self;
         sortBy.dataSource = self;
-        
+
         initialization();
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,29 +41,10 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         errorLabel.textColor = UIColor.redColor();
         errorLabel.numberOfLines = 5;
         
-//        keywordText.addTarget(self, action: "keywordDidChange:", forControlEvents: UIControlEvents.EditingChanged);
-//        priceFromText.addTarget(self, action: "minPriceDidChange:", forControlEvents: UIControlEvents.EditingChanged);
-//        priceToText.addTarget(self, action: "maxPriceDidChange:", forControlEvents: UIControlEvents.EditingChanged);
         clearButton.addTarget(self, action: "clearForm", forControlEvents: UIControlEvents.TouchUpInside);
         submitButton.addTarget(self, action: "validation", forControlEvents: UIControlEvents.TouchUpInside);
     }
-    
-//    func keywordDidChange(textField: UITextField) {
-//        if(keywordText.text == ""){
-//            errorLabel.text = "Please enter a keyword";
-//        }else{
-//            errorLabel.text = "";
-//        }
-//        
-//    }
-    
-//    func minPriceDidChange(textField: UITextField) {
-//        NSLog("min");
-//    }
-//    
-//    func maxPriceDidChange(textField: UITextField) {
-//        NSLog("max");
-//    }
+
     
     func clearForm(){
         keywordText.text = "";
@@ -89,6 +72,13 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         if(keywordText.text == ""){
             error += emptyKeyword;
             flag = false;
+        }
+        
+        if(priceFromText.text == "0" || priceFromText.text == "0.0" || priceFromText.text == "0.00"){
+            minPrice = 0.000000000001;
+        }
+        if(priceToText.text == "0" || priceToText.text == "0.0" || priceToText.text == "0.00"){
+            maxPrice = 0.000000000001;
         }
         
         if(priceFromText.text != ""){
@@ -127,9 +117,12 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         }
         if(flag){
             sendRequestToServer();
-        }
-        
-        
+            var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            var vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("ResultList") as! UIViewController;
+            
+            self.presentViewController(vc, animated: true, completion: nil)
+        }      
         errorLabel.text = error;
 
     }
@@ -155,12 +148,13 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
             if (err != nil) {
                 println("JSON Error \(err!.localizedDescription)")
             }
-            println(jsonResult);
-//            dispatch_async(dispatch_get_main_queue(), {
-//                dateLabel.text = jsonDate
-//                timeLabel.text = jsonTime
-//            })
+            
+            //println(jsonResult);
+            //let resultList = self.storyboard!.instantiateViewControllerWithIdentifier("ResultList") as? ResultList;
+            
+           
         })
+        
         jsonQuery.resume();
     }
     

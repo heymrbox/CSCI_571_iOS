@@ -13,6 +13,7 @@
 		ED0960721AE1B4C9008080EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED0960711AE1B4C9008080EA /* Images.xcassets */; };
 		ED0960751AE1B4C9008080EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED0960731AE1B4C9008080EA /* LaunchScreen.xib */; };
 		ED0960811AE1B4C9008080EA /* CSCI_571_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0960801AE1B4C9008080EA /* CSCI_571_iOSTests.swift */; };
+		ED4E5E8E1AE5AC2600499108 /* ResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4E5E8D1AE5AC2600499108 /* ResultList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		ED09607A1AE1B4C9008080EA /* CSCI_571_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CSCI_571_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED09607F1AE1B4C9008080EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED0960801AE1B4C9008080EA /* CSCI_571_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCI_571_iOSTests.swift; sourceTree = "<group>"; };
+		ED4E5E8D1AE5AC2600499108 /* ResultList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				ED09606A1AE1B4C9008080EA /* AppDelegate.swift */,
 				ED09606C1AE1B4C9008080EA /* ViewController.swift */,
+				ED4E5E8D1AE5AC2600499108 /* ResultList.swift */,
 				ED09606E1AE1B4C9008080EA /* Main.storyboard */,
 				ED0960711AE1B4C9008080EA /* Images.xcassets */,
 				ED0960731AE1B4C9008080EA /* LaunchScreen.xib */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED4E5E8E1AE5AC2600499108 /* ResultList.swift in Sources */,
 				ED09606D1AE1B4C9008080EA /* ViewController.swift in Sources */,
 				ED09606B1AE1B4C9008080EA /* AppDelegate.swift in Sources */,
 			);
@@ -409,6 +413,7 @@
 				ED0960861AE1B4C9008080EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ED0960871AE1B4C9008080EA /* Build configuration list for PBXNativeTarget "CSCI_571_iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				ED0960891AE1B4C9008080EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

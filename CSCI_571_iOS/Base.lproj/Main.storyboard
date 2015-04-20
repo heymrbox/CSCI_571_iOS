@@ -7,14 +7,14 @@
         <!--Main Form-->
         <scene sceneID="gOB-uT-KkQ">
             <objects>
-                <tableViewController title="Main Form" id="qRl-gg-XtM" customClass="ViewController" customModule="CSCI_571_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MainForm" title="Main Form" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qRl-gg-XtM" customClass="ViewController" customModule="CSCI_571_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="oCD-fs-2HF">
-                        <rect key="frame" x="0.0" y="0.0" width="365" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.88729563779999998" green="0.94824640760000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s8h-1X-SOg">
-                            <rect key="frame" x="0.0" y="0.0" width="365" height="78"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <attributedString key="attributedText">
                                 <fragment content="  EbaySearch">
@@ -181,8 +181,7 @@
                     <toolbarItems/>
                     <value key="contentSizeForViewInPopover" type="size" width="375" height="667"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="365" height="667"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="clearButton" destination="BxU-Tt-tA1" id="MiH-xS-2Xz"/>
                         <outlet property="errorLabel" destination="Rmb-un-lK7" id="rPR-sI-0II"/>
@@ -196,6 +195,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FsN-fL-GAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-121.5" y="200.5"/>
+        </scene>
+        <!--ResultList-->
+        <scene sceneID="Fya-Y4-1aE">
+            <objects>
+                <viewController storyboardIdentifier="ResultList" title="ResultList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uoy-XN-aOB" customClass="ResultList" customModule="CSCI_571_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9rT-97-6UI"/>
+                        <viewControllerLayoutGuide type="bottom" id="LUb-Xm-3W8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lhz-wX-tfF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ahaha" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNN-JP-ev3">
+                                <rect key="frame" x="109" y="184" width="156" height="101"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Back" id="4Du-EV-pmm">
+                            <connections>
+                                <segue destination="qRl-gg-XtM" kind="show" id="LFx-SR-w7K"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MxJ-xO-Ap8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="413.5" y="-617.5"/>
         </scene>
     </scenes>
 </document>
