@@ -37,6 +37,7 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         sortByText.inputView = sortBy;
         errorLabel.text = "";
         errorLabel.textColor = UIColor.redColor();
+        errorLabel.numberOfLines = 5;
         
 //        keywordText.addTarget(self, action: "keywordDidChange:", forControlEvents: UIControlEvents.EditingChanged);
 //        priceFromText.addTarget(self, action: "minPriceDidChange:", forControlEvents: UIControlEvents.EditingChanged);
@@ -78,14 +79,34 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         let other = "No Results Found\n";
         
         var error = "";
+        var minPrice = (priceFromText.text as NSString).floatValue;
+        var maxPrice = (priceToText.text as NSString).floatValue;
+        
+        println(minPrice);
         
         if(keywordText.text == ""){
             error += emptyKeyword;
         }
-        if(priceFromText.text.toInt() == nil || priceToText.text.toInt() == nil){
+        
+        if(priceToText.text == ""){
+            maxPrice = 2147483647.0;
+        }
+        
+        println(maxPrice);
+        
+        if(minPrice != 0.0 && maxPrice != 0.0){
+            
+            if(minPrice < 0 || maxPrice < 0){
+                error += notInteger;
+            }
+            if(minPrice > maxPrice){
+                error += notBiggerThan;
+            }
+        }else if(priceFromText.text != "" || priceToText.text != ""){
+            
             error += notNumber;
         }
-        println(error);
+      
         
         errorLabel.text = error;
 
