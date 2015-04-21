@@ -147,15 +147,8 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
             highestPrice = "&highestPrice=" + abc;
         }
         
-        var sortByUrl = "";
-        if let temp = sortByText.text{
-            sortByUrl = "&sortBy=" + temp;
-        }
-        
 
         var additional = "&resultsPerPage=5&inputPageNum=1";
-        
-        
         
         urlToGo = fixed + keywords + lowestPrice + highestPrice;
         urlToGo += "&sortBy=" + sortByValue + additional;
@@ -166,7 +159,6 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
         
         var url : NSURL = NSURL(string: urlEncoded!)!;
         var request: NSMutableURLRequest = NSMutableURLRequest(URL: url);
-//        request.HTTPMethod = "GET";
         
         let urlSession = NSURLSession.sharedSession();
         
@@ -187,6 +179,8 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
                 
                 var vc: ResultList = storyboard.instantiateViewControllerWithIdentifier("ResultList") as! ResultList;
                 vc.response = jsonResult;
+                
+                vc.resultKeyword = self.keywordText.text;
                 self.presentViewController(vc, animated: true, completion: nil)
             }
             
