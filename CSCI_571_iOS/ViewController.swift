@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
+class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
     @IBOutlet var keywordText: UITextField!
     @IBOutlet var priceFromText: UITextField!
     @IBOutlet var priceToText: UITextField!
@@ -22,6 +22,7 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
     
     let sortByOptions = ["Best Match", "Price: highest first", "Price + Shipping: highest first", "Price + Shipping: lowest first"];
     
+    var result = NSDictionary();
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -117,17 +118,13 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         }
         if(flag){
             sendRequestToServer();
-            var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            var vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("ResultList") as! UIViewController;
-            
-            self.presentViewController(vc, animated: true, completion: nil)
-        }      
+        }
+        
         errorLabel.text = error;
 
     }
     
-    func sendRequestToServer(){
+    func sendRequestToServer() -> NSDictionary{
         println("Request sending");
         
         var additional = "?keywords=iphone+6&lowestPrice=&highestPrice=&shipping_time=&sortBy=BestMatch&resultsPerPage=5&inputPageNum=1";
@@ -137,25 +134,33 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         var request: NSMutableURLRequest = NSMutableURLRequest(URL: url);
         let urlSession = NSURLSession.sharedSession();
         
-        
         let jsonQuery = urlSession.dataTaskWithURL(url, completionHandler: { data, response, error -> Void in
             if (error != nil) {
                 println(error.localizedDescription)
             }
             var err: NSError?
             
-            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
+            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary;
             if (err != nil) {
                 println("JSON Error \(err!.localizedDescription)")
             }
             
             //println(jsonResult);
-            //let resultList = self.storyboard!.instantiateViewControllerWithIdentifier("ResultList") as? ResultList;
+            self.result = jsonResult;
             
-           
+            dispatch_async(dispatch_get_main_queue()) {
+                var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                var vc: ResultList = storyboard.instantiateViewControllerWithIdentifier("ResultList") as! ResultList;
+                vc.response = jsonResult;
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+
+            
         })
-        
         jsonQuery.resume();
+
+        return self.result;
     }
     
     
@@ -181,7 +186,16 @@ class ViewController: UITableViewController, UIPickerViewDataSource, UIPickerVie
         super.didReceiveMemoryWarning();
         // Dispose of any resources that can be recreated.
     }
-
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        var re : ResultList = segue.destinationViewController as! ResultList;
+//        re.response = temp;
+//        re.test = keywordText.text;
+//    }
 
 }
+
+
+
+
 

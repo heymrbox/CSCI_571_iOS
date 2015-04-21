@@ -226,6 +226,9 @@
                     </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="testLabel" destination="nNN-JP-ev3" id="pHc-ku-8p1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MxJ-xO-Ap8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

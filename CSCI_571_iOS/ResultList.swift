@@ -8,15 +8,18 @@
 
 import UIKit
 
+
 class ResultList: UIViewController {
+
     
-    func enter(){
-        println("enter!!");
-    }
-
+    @IBOutlet var testLabel: UILabel!
+    
+    var response = NSDictionary();
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-
+        super.viewDidLoad();
+        println("response= \(response)");
+        testLabel.text = "fff";
         // Do any additional setup after loading the view.
     }
 
@@ -24,6 +27,6 @@ class ResultList: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
 
 }
