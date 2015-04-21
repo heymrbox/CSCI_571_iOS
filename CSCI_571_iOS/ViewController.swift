@@ -22,7 +22,7 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
     
     let sortByOptions = ["Best Match", "Price: highest first", "Price + Shipping: highest first", "Price + Shipping: lowest first"];
     
-    var result = NSDictionary();
+    var sortByValue = "";
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -124,14 +124,45 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
 
     }
     
-    func sendRequestToServer() -> NSDictionary{
+    func sendRequestToServer(){
         println("Request sending");
         
-        var additional = "?keywords=iphone+6&lowestPrice=&highestPrice=&shipping_time=&sortBy=BestMatch&resultsPerPage=5&inputPageNum=1";
-        var urlToGo = "http://csci571-weiwei-env.elasticbeanstalk.com/ebay_search.php" + additional;
+        var fixed = "http://csci571-weiwei-env.elasticbeanstalk.com/ebay_search.php?";
         
-        var url: NSURL = NSURL(string: urlToGo)!;
+        
+        var urlToGo = "";
+        var keywords = "";
+        if let abc = keywordText.text{
+            keywords = "keywords=" + abc;
+        }
+        
+        var lowestPrice = "";
+        if let abc = priceFromText.text{
+            lowestPrice = "&lowestPrice=" + abc;
+        }
+        
+        var highestPrice = "";
+        if let abc = priceToText.text{
+            highestPrice = "&highestPrice=" + abc;
+        }
+        
+        var sortByUrl = "";
+        if let abc = sortByText.text{
+            sortByUrl = "&sortBy=" + abc;
+        }
+        
+
+        var additional = "&resultsPerPage=5&inputPageNum=1";
+        
+        urlToGo = fixed + keywords + lowestPrice + highestPrice;
+        urlToGo += sortByUrl + additional;
+        
+        println(urlToGo);
+        
+        var url : NSURL = NSURL(string: urlToGo)!;
         var request: NSMutableURLRequest = NSMutableURLRequest(URL: url);
+//        request.HTTPMethod = "GET";
+        
         let urlSession = NSURLSession.sharedSession();
         
         let jsonQuery = urlSession.dataTaskWithURL(url, completionHandler: { data, response, error -> Void in
@@ -145,8 +176,6 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
                 println("JSON Error \(err!.localizedDescription)")
             }
             
-            //println(jsonResult);
-            self.result = jsonResult;
             
             dispatch_async(dispatch_get_main_queue()) {
                 var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -155,12 +184,10 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
                 vc.response = jsonResult;
                 self.presentViewController(vc, animated: true, completion: nil)
             }
-
             
         })
         jsonQuery.resume();
 
-        return self.result;
     }
     
     
@@ -179,7 +206,8 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        sortByText.text = "\(sortByOptions[row])";        
+        sortByText.text = "\(sortByOptions[row])";
+        sortByValue = sortByText.text;
     }
     
     override func didReceiveMemoryWarning() {
@@ -187,11 +215,6 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
         // Dispose of any resources that can be recreated.
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        var re : ResultList = segue.destinationViewController as! ResultList;
-//        re.response = temp;
-//        re.test = keywordText.text;
-//    }
 
 }
 
