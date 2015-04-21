@@ -22,7 +22,7 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
     
     let sortByOptions = ["Best Match", "Price: highest first", "Price + Shipping: highest first", "Price + Shipping: lowest first"];
     
-    var sortByValue = "";
+    var sortByValue = "Best Match";
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -38,6 +38,7 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
     func initialization(){
         sortByText.text = sortByOptions[0];
         sortByText.inputView = sortBy;
+        
         errorLabel.text = "";
         errorLabel.textColor = UIColor.redColor();
         errorLabel.numberOfLines = 5;
@@ -147,19 +148,23 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
         }
         
         var sortByUrl = "";
-        if let abc = sortByText.text{
-            sortByUrl = "&sortBy=" + abc;
+        if let temp = sortByText.text{
+            sortByUrl = "&sortBy=" + temp;
         }
         
 
         var additional = "&resultsPerPage=5&inputPageNum=1";
         
+        
+        
         urlToGo = fixed + keywords + lowestPrice + highestPrice;
-        urlToGo += sortByUrl + additional;
+        urlToGo += "&sortBy=" + sortByValue + additional;
         
-        println(urlToGo);
+        var urlEncoded = urlToGo.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding);
         
-        var url : NSURL = NSURL(string: urlToGo)!;
+        println(urlEncoded);
+        
+        var url : NSURL = NSURL(string: urlEncoded!)!;
         var request: NSMutableURLRequest = NSMutableURLRequest(URL: url);
 //        request.HTTPMethod = "GET";
         
