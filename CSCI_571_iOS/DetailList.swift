@@ -24,17 +24,75 @@ class DetailList: UITableViewController {
     
     @IBOutlet var FB_btn: UIButton!
     
+    @IBOutlet var basicInfo_btn: UIButton!
+    @IBOutlet var sellerInfo_btn: UIButton!
+    @IBOutlet var shippingInfo_btn: UIButton!
+    
+    @IBOutlet var label1: UILabel!
+    @IBOutlet var detail1: UILabel!
+    
+    @IBOutlet var label2: UILabel!
+    @IBOutlet var detail2: UILabel!
+    
+    @IBOutlet var label3: UILabel!
+    @IBOutlet var detail3: UILabel!
+    
+    @IBOutlet var label4: UILabel!
+    @IBOutlet var detail4: UILabel!
+    
+    @IBOutlet var label5: UILabel!
+    @IBOutlet var detail5: UILabel!
+    
+    @IBOutlet var label6: UILabel!
+    @IBOutlet var detail6: UILabel!
+    
     var item_basicInfo = NSDictionary();
     var item_sellerInfo = NSDictionary();
     var item_shippingInfo = NSDictionary();
     
+    var button_record = 1;
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        buyNow_btn.addTarget(self, action: "redirectToWeb", forControlEvents: UIControlEvents.TouchUpInside);
+        initialization();
         
         displayDetail();
     }
+    
+    func initialization(){
+        label1.text = "";
+        detail1.text = "";
+        
+        label2.text = "";
+        detail2.text = "";
+        
+        label3.text = "";
+        detail3.text = "";
+        
+        label4.text = "";
+        detail4.text = "";
+        
+        label5.text = "";
+        detail5.text = "";
+        
+        label6.text = "";
+        detail6.text = "";
+        
+        
+        buyNow_btn.selected = false;
+        buyNow_btn.addTarget(self, action: "redirectToWeb", forControlEvents: UIControlEvents.TouchUpInside);
+        
+        basicInfo_btn.selected = true;
+        basicInfo_btn.addTarget(self, action: "basicInfoClicked", forControlEvents: UIControlEvents.TouchUpInside);
+        
+        sellerInfo_btn.selected = false;
+        sellerInfo_btn.addTarget(self, action: "sellerInfoClicked", forControlEvents: UIControlEvents.TouchUpInside);
+        
+        shippingInfo_btn.selected = false;
+        shippingInfo_btn.addTarget(self, action: "shippingInfoClicked", forControlEvents: UIControlEvents.TouchUpInside);
+    }
+    
     
     func displayDetail(){
         
@@ -96,15 +154,101 @@ class DetailList: UITableViewController {
             }
         }
         
+        /* --- Display the default tab --- */
+        
+        label1.text = "Category Name";
+        label2.text = "Condition";
+        label3.text = "Buying Format";
+        
+        if let ctgy = item_basicInfo["categoryName"] as? String{
+            detail1.text = ctgy;
+        }
+        if let cdtn = item_basicInfo["conditionDisplayName"] as? String{
+            detail2.text = cdtn;
+        }
+        if let bfmt = item_basicInfo["listingType"] as? String{
+            detail3.text = bfmt;
+        }
   
     }
     
     
     func redirectToWeb(){
+        buyNow_btn.selected = true;
+        
         if let url = item_basicInfo["viewItemURL"] as? String{
             UIApplication.sharedApplication().openURL(NSURL(string: url)!);
         }
     }
+    
+    func basicInfoClicked(){
+        /* ---  Handle UI for button --- */
+        
+        basicInfo_btn.selected = true;
+        
+        switch(button_record){
+        case 2:
+            sellerInfo_btn.selected = false;
+            break;
+        case 3:
+            shippingInfo_btn.selected = false;
+            break;
+        default:
+            break;
+        }
+        
+        button_record = 1;
+
+        /* --- Handle tab display --- */
+        
+        
+        
+        println("basic");
+    }
+    
+    func sellerInfoClicked(){
+        /* ---  Handle UI for button --- */
+
+        sellerInfo_btn.selected = true;
+
+        switch(button_record){
+        case 1:
+            basicInfo_btn.selected = false;
+            break;
+        case 3:
+            shippingInfo_btn.selected = false;
+            break;
+        default:
+            break;
+        }
+        
+        button_record = 2;
+
+        
+        println("seller");
+    }
+    
+    func shippingInfoClicked(){
+        /* ---  Handle UI for button --- */
+
+        shippingInfo_btn.selected = true;
+
+        switch(button_record){
+        case 1:
+            basicInfo_btn.selected = false;
+            break;
+        case 2:
+            sellerInfo_btn.selected = false;
+            break;
+        default:
+            break;
+        }
+        
+        button_record = 3;
+
+        println("shipping");
+    }
+    
     
 
     override func didReceiveMemoryWarning() {
