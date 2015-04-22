@@ -19,6 +19,7 @@
 		EDCC30821AE71B81006A9EBD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */; };
 		EDCC30861AE71DB2006A9EBD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC30851AE71DB2006A9EBD /* Bolts.framework */; };
 		EDCC30881AE759C6006A9EBD /* DetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC30871AE759C6006A9EBD /* DetailList.swift */; };
+		EDCC308A1AE82FDC006A9EBD /* Pic in Resources */ = {isa = PBXBuildFile; fileRef = EDCC30891AE82FDC006A9EBD /* Pic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		EDCC30851AE71DB2006A9EBD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		EDCC30871AE759C6006A9EBD /* DetailList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailList.swift; sourceTree = "<group>"; };
+		EDCC30891AE82FDC006A9EBD /* Pic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pic; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		ED0960671AE1B4C8008080EA /* CSCI_571_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				EDCC30891AE82FDC006A9EBD /* Pic */,
 				EDCC30801AE7158B006A9EBD /* Bridging-Header.h */,
 				ED09606A1AE1B4C9008080EA /* AppDelegate.swift */,
 				ED09606C1AE1B4C9008080EA /* ViewController.swift */,
@@ -219,6 +222,7 @@
 				ED0960701AE1B4C9008080EA /* Main.storyboard in Resources */,
 				ED0960751AE1B4C9008080EA /* LaunchScreen.xib in Resources */,
 				ED0960721AE1B4C9008080EA /* Images.xcassets in Resources */,
+				EDCC308A1AE82FDC006A9EBD /* Pic in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

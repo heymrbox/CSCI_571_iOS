@@ -31,18 +31,24 @@ class DetailList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         
+        buyNow_btn.addTarget(self, action: "redirectToWeb", forControlEvents: UIControlEvents.TouchUpInside);
+        
         displayDetail();
     }
     
     func displayDetail(){
         
         /* ---  Display image --- */
+        var image_url = NSURL();
         
-        if var img_url = NSURL(string: (item_basicInfo["pictureURLSuperSize"] as? String)!){
+        if let img_url = NSURL(string: (item_basicInfo["pictureURLSuperSize"] as? String)!){
+            
             if(img_url == ""){
-                img_url = NSURL(string: (item_basicInfo["galleryURL"] as? String)!)!
+                image_url = NSURL(string: (item_basicInfo["galleryURL"] as? String!)!)!;
+            }else{
+                image_url = img_url;
             }
-            if let img_data = NSData(contentsOfURL: img_url){
+            if let img_data = NSData(contentsOfURL: image_url){
                 item_img.image = UIImage(data: img_data);
             }
         }
@@ -52,7 +58,52 @@ class DetailList: UITableViewController {
             item_title.text? = ttl;
         }
         
+        /* --- Display price --- */
+        if let prc = item_basicInfo["convertedCurrentPrice"] as? String{
+            var price_detail = "";
+            var shippingServiceCost = "";
+            var shippingType = "";
+            
+            if let shippingServiceCost_msg : AnyObject = item_basicInfo["shippingServiceCost"]{
+                shippingServiceCost = shippingServiceCost_msg as! String;
+            }
+            if let shippingType_msg : AnyObject = item_shippingInfo["shippingType"]{
+                shippingType = shippingType_msg as! String;
+            }
+            
+            if(shippingServiceCost == "0.0" || shippingType == "Free" || shippingServiceCost == ""){
+                price_detail = "(FREE Shipping)";
+            }else{
+                price_detail = "(+ $\(shippingServiceCost) Shipping)";
+            }
+            
+            item_price.text = "Price: $\(prc) \(price_detail)";
+        }
         
+        /* --- Display location --- */
+        if let loc = item_basicInfo["location"] as? String{
+            item_location.text = loc;
+        }
+        
+        /* --- Handle topRated img --- */
+        if let topR = item_basicInfo["topRatedListing"] as? String{
+            if(topR == "true"){
+                let topRated =  UIImage(named:"Pic/itemTopRated.jpg");
+                
+                topRated_img.image = topRated;
+            }else{
+                println("Not top rated");
+            }
+        }
+        
+  
+    }
+    
+    
+    func redirectToWeb(){
+        if let url = item_basicInfo["viewItemURL"] as? String{
+            UIApplication.sharedApplication().openURL(NSURL(string: url)!);
+        }
     }
     
 

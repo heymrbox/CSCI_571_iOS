@@ -1,4 +1,4 @@
-//
+
 //  ResultList.swift
 //  CSCI_571_iOS
 //
