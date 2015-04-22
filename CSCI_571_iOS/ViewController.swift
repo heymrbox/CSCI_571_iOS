@@ -175,13 +175,22 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
             
             
             dispatch_async(dispatch_get_main_queue()) {
-                var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                
-                var vc: ResultList = storyboard.instantiateViewControllerWithIdentifier("ResultList") as! ResultList;
-                vc.response = jsonResult;
-                
-                vc.resultKeyword = self.keywordText.text;
-                self.presentViewController(vc, animated: true, completion: nil)
+                var error = "";
+                if let msg: AnyObject = jsonResult["ack"]{
+                    error = msg as! String;
+                }
+                if(error == "No results found"){
+                    self.errorLabel.text = "No results found";
+                }else{
+                    var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    
+                    var vc: ResultList = storyboard.instantiateViewControllerWithIdentifier("ResultList") as! ResultList;
+                    vc.response = jsonResult;
+                    
+                    vc.resultKeyword = self.keywordText.text;
+                    self.presentViewController(vc, animated: true, completion: nil)
+
+                }
             }
             
         })

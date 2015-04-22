@@ -293,6 +293,9 @@
                                                     <state key="normal" title="Done">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="qRl-gg-XtM" kind="show" id="Hvf-ke-v0v"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
