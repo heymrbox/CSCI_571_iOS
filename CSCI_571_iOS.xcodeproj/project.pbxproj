@@ -18,6 +18,7 @@
 		EDCC307F1AE713FC006A9EBD /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC307C1AE713FC006A9EBD /* FBSDKShareKit.framework */; };
 		EDCC30821AE71B81006A9EBD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */; };
 		EDCC30861AE71DB2006A9EBD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC30851AE71DB2006A9EBD /* Bolts.framework */; };
+		EDCC30881AE759C6006A9EBD /* DetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC30871AE759C6006A9EBD /* DetailList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		EDCC30801AE7158B006A9EBD /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		EDCC30851AE71DB2006A9EBD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
+		EDCC30871AE759C6006A9EBD /* DetailList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				ED09606A1AE1B4C9008080EA /* AppDelegate.swift */,
 				ED09606C1AE1B4C9008080EA /* ViewController.swift */,
 				ED4E5E8D1AE5AC2600499108 /* ResultList.swift */,
+				EDCC30871AE759C6006A9EBD /* DetailList.swift */,
 				ED09606E1AE1B4C9008080EA /* Main.storyboard */,
 				ED0960711AE1B4C9008080EA /* Images.xcassets */,
 				ED0960731AE1B4C9008080EA /* LaunchScreen.xib */,
@@ -235,6 +238,7 @@
 			files = (
 				ED4E5E8E1AE5AC2600499108 /* ResultList.swift in Sources */,
 				ED09606D1AE1B4C9008080EA /* ViewController.swift in Sources */,
+				EDCC30881AE759C6006A9EBD /* DetailList.swift in Sources */,
 				ED09606B1AE1B4C9008080EA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

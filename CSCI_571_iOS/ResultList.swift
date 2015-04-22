@@ -39,6 +39,7 @@ class ResultList: UITableViewController {
     var response = NSDictionary();
     var resultKeyword = "";
     var url_images = Array(count: 5, repeatedValue: "");
+    var bridge = Array(count: 15, repeatedValue: NSDictionary());
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -129,22 +130,63 @@ class ResultList: UITableViewController {
         item3_shippingInfo = item3["shippingInfo"]! as! NSDictionary;
         item4_shippingInfo = item4["shippingInfo"]! as! NSDictionary;
         
+        bridge[0] = item0_basicInfo as! NSDictionary;
+        bridge[1] = item0_sellerInfo as! NSDictionary;
+        bridge[2] = item0_shippingInfo as! NSDictionary;
+        
+        bridge[3] = item1_basicInfo as! NSDictionary;
+        bridge[4] = item1_sellerInfo as! NSDictionary;
+        bridge[5] = item1_shippingInfo as! NSDictionary;
+
+        bridge[6] = item2_basicInfo as! NSDictionary;
+        bridge[7] = item2_sellerInfo as! NSDictionary;
+        bridge[8] = item2_shippingInfo as! NSDictionary;
+        
+        bridge[9] = item3_basicInfo as! NSDictionary;
+        bridge[10] = item3_sellerInfo as! NSDictionary;
+        bridge[11] = item3_shippingInfo as! NSDictionary;
+        
+        bridge[12] = item4_basicInfo as! NSDictionary;
+        bridge[13] = item4_sellerInfo as! NSDictionary;
+        bridge[14] = item4_shippingInfo as! NSDictionary;
+        
+        
         /* =========== Display titles for items (5) =========== */
+        
+        let title0 = UITapGestureRecognizer(target: self, action: "titleTab0:");
+        let title1 = UITapGestureRecognizer(target: self, action: "titleTab1:");
+        let title2 = UITapGestureRecognizer(target: self, action: "titleTab2:");
+        let title3 = UITapGestureRecognizer(target: self, action: "titleTab3:");
+        let title4 = UITapGestureRecognizer(target: self, action: "titleTab4:");
         
         if let itm0_ttl = item0_basicInfo["title"] as? String{
             title_item0.text = itm0_ttl;
+            title_item0!.addGestureRecognizer(title0);
+            title_item0!.userInteractionEnabled = true;
         }
         if let itm1_ttl = item1_basicInfo["title"] as? String{
             title_item1.text = itm1_ttl;
+            title_item1!.addGestureRecognizer(title1);
+            title_item1!.userInteractionEnabled = true;
+
         }
         if let itm2_ttl = item2_basicInfo["title"] as? String{
             title_item2.text = itm2_ttl;
+            title_item2!.addGestureRecognizer(title2);
+            title_item2!.userInteractionEnabled = true;
+
         }
         if let itm3_ttl = item3_basicInfo["title"] as? String{
             title_item3.text = itm3_ttl;
+            title_item3!.addGestureRecognizer(title3);
+            title_item3!.userInteractionEnabled = true;
+
         }
         if let itm4_ttl = item4_basicInfo["title"] as? String{
             title_item4.text = itm4_ttl;
+            title_item4!.addGestureRecognizer(title4);
+            title_item4!.userInteractionEnabled = true;
+
         }
         
         /* =========== Display prices for item (5) ============ */
@@ -168,6 +210,7 @@ class ResultList: UITableViewController {
             }
             
             price_item0.text = "Price: $\(itm0_prc) \(price_detail)";
+            
         }
         
         if let itm1_prc = item1_basicInfo["convertedCurrentPrice"] as? String{
@@ -330,9 +373,42 @@ class ResultList: UITableViewController {
     }
     
     func imageTapGesture(url: String){
-        println(url);
         UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
+    
+    func titleTab0(gesture: UIGestureRecognizer){
+        toDetail(bridge[0], sellerInfo: bridge[1], shippingInfo: bridge[2]);
+    }
+    
+    func titleTab1(gesture: UIGestureRecognizer){
+        toDetail(bridge[3], sellerInfo: bridge[4], shippingInfo: bridge[5]);
+    }
+    
+    func titleTab2(gesture: UIGestureRecognizer){
+        toDetail(bridge[6], sellerInfo: bridge[7], shippingInfo: bridge[8]);
+    }
+    
+    func titleTab3(gesture: UIGestureRecognizer){
+        toDetail(bridge[9], sellerInfo: bridge[10], shippingInfo: bridge[11]);
+    }
+    
+    func titleTab4(gesture: UIGestureRecognizer){
+        toDetail(bridge[12], sellerInfo: bridge[13], shippingInfo: bridge[14]);
+    }
+    
+    func toDetail(basicInfo: NSDictionary, sellerInfo: NSDictionary, shippingInfo: NSDictionary){
+        var storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        var vc: DetailList = storyboard.instantiateViewControllerWithIdentifier("DetailList") as! DetailList;
+        
+        vc.item_basicInfo = basicInfo;
+        vc.item_sellerInfo = sellerInfo;
+        vc.item_shippingInfo = shippingInfo;
+        
+        self.presentViewController(vc, animated: true, completion: nil)
+
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
