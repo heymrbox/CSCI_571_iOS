@@ -26,6 +26,7 @@ class ResultList: UITableViewController {
     
     var response = NSDictionary();
     var resultKeyword = "";
+    var url_images = Array(count: 5, repeatedValue: "");
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -99,6 +100,7 @@ class ResultList: UITableViewController {
         
         if let img0_url = NSURL(string: item0_basicInfo["galleryURL"] as! String){
             if let img0_data = NSData(contentsOfURL: img0_url){
+                url_images[0] = item0_basicInfo["viewItemURL"] as! String;
                 img_item0!.image = UIImage(data: img0_data);
                 img_item0!.addGestureRecognizer(tapGesture0);
                 img_item0!.userInteractionEnabled = true;
@@ -107,6 +109,7 @@ class ResultList: UITableViewController {
         
         if let img1_url = NSURL(string: item1_basicInfo["galleryURL"] as! String){
             if let img1_data = NSData(contentsOfURL: img1_url){
+                url_images[1] = item1_basicInfo["viewItemURL"] as! String;
                 img_item1!.image = UIImage(data: img1_data);
                 img_item1!.addGestureRecognizer(tapGesture1);
                 img_item1!.userInteractionEnabled = true;
@@ -115,6 +118,7 @@ class ResultList: UITableViewController {
         
         if let img2_url = NSURL(string: item2_basicInfo["galleryURL"] as! String){
             if let img2_data = NSData(contentsOfURL: img2_url){
+                url_images[2] = item2_basicInfo["viewItemURL"] as! String;
                 img_item2!.image = UIImage(data: img2_data);
                 img_item2!.addGestureRecognizer(tapGesture2);
                 img_item2!.userInteractionEnabled = true;
@@ -123,6 +127,7 @@ class ResultList: UITableViewController {
         
         if let img3_url = NSURL(string: item3_basicInfo["galleryURL"] as! String){
             if let img3_data = NSData(contentsOfURL: img3_url){
+                url_images[3] = item3_basicInfo["viewItemURL"] as! String;
                 img_item3!.image = UIImage(data: img3_data);
                 img_item3!.addGestureRecognizer(tapGesture3);
                 img_item3!.userInteractionEnabled = true;
@@ -131,6 +136,7 @@ class ResultList: UITableViewController {
         
         if let img4_url = NSURL(string: item4_basicInfo["galleryURL"] as! String){
             if let img4_data = NSData(contentsOfURL: img4_url){
+                url_images[4] = item4_basicInfo["viewItemURL"] as! String;
                 img_item4!.image = UIImage(data: img4_data);
                 img_item4!.addGestureRecognizer(tapGesture4);
                 img_item4!.userInteractionEnabled = true;
@@ -141,23 +147,24 @@ class ResultList: UITableViewController {
     }
     
     func tapGesture0(gesture: UIGestureRecognizer){
-        imageTapGesture();
+        imageTapGesture(url_images[0]);
     }
     func tapGesture1(gesture: UIGestureRecognizer){
-        imageTapGesture();
+        imageTapGesture(url_images[1]);
     }
     func tapGesture2(gesture: UIGestureRecognizer){
-        imageTapGesture();
+        imageTapGesture(url_images[2]);
     }
     func tapGesture3(gesture: UIGestureRecognizer){
-        imageTapGesture();
+        imageTapGesture(url_images[3]);
     }
     func tapGesture4(gesture: UIGestureRecognizer){
-        imageTapGesture();
+        imageTapGesture(url_images[4]);
     }
     
-    func imageTapGesture(){
-        println("tapped");
+    func imageTapGesture(url: String){
+        println(url);
+        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
 
     override func didReceiveMemoryWarning() {
