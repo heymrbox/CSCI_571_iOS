@@ -20,6 +20,18 @@ class ResultList: UITableViewController {
     @IBOutlet var img_item3: UIImageView!
     @IBOutlet var img_item4: UIImageView!
 
+    @IBOutlet var title_item0: UILabel!
+    @IBOutlet var title_item1: UILabel!
+    @IBOutlet var title_item2: UILabel!
+    @IBOutlet var title_item3: UILabel!
+    @IBOutlet var title_item4: UILabel!
+    
+    @IBOutlet var price_item0: UILabel!
+    @IBOutlet var price_item1: UILabel!
+    @IBOutlet var price_item2: UILabel!
+    @IBOutlet var price_item3: UILabel!
+    @IBOutlet var price_item4: UILabel!
+    
     
     @IBOutlet var backButton: UIButton!
     
@@ -31,18 +43,38 @@ class ResultList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         
+        initialization();
+        
+        
+        
         parseJSON(response);
         
     }
     
-    func parseJSON(response: NSDictionary){
-        resultHeader.text = "Results for '" + resultKeyword + "'";
+    func initialization(){
+        title_item0.numberOfLines = 4;
+        title_item1.numberOfLines = 4;
+        title_item2.numberOfLines = 4;
+        title_item3.numberOfLines = 4;
+        title_item4.numberOfLines = 4;
         
-        let tapGesture0 = UITapGestureRecognizer(target: self, action: "tapGesture0:");
-        let tapGesture1 = UITapGestureRecognizer(target: self, action: "tapGesture1:");
-        let tapGesture2 = UITapGestureRecognizer(target: self, action: "tapGesture2:");
-        let tapGesture3 = UITapGestureRecognizer(target: self, action: "tapGesture3:");
-        let tapGesture4 = UITapGestureRecognizer(target: self, action: "tapGesture4:");
+        title_item0.font = title_item0.font.fontWithSize(12);
+        title_item1.font = title_item1.font.fontWithSize(12);
+        title_item2.font = title_item2.font.fontWithSize(12);
+        title_item3.font = title_item3.font.fontWithSize(12);
+        title_item4.font = title_item4.font.fontWithSize(12);
+    
+        price_item0.font = price_item0.font.fontWithSize(13);
+        price_item1.font = price_item1.font.fontWithSize(13);
+        price_item2.font = price_item2.font.fontWithSize(13);
+        price_item3.font = price_item3.font.fontWithSize(13);
+        price_item4.font = price_item4.font.fontWithSize(13);
+  
+    }
+    
+    func parseJSON(response: NSDictionary){
+        
+        resultHeader.text = "Results for '" + resultKeyword + "'";
         
         var item0: AnyObject;
         var item1: AnyObject;
@@ -97,6 +129,141 @@ class ResultList: UITableViewController {
         item3_shippingInfo = item3["shippingInfo"]! as! NSDictionary;
         item4_shippingInfo = item4["shippingInfo"]! as! NSDictionary;
         
+        /* =========== Display titles for items (5) =========== */
+        
+        if let itm0_ttl = item0_basicInfo["title"] as? String{
+            title_item0.text = itm0_ttl;
+        }
+        if let itm1_ttl = item1_basicInfo["title"] as? String{
+            title_item1.text = itm1_ttl;
+        }
+        if let itm2_ttl = item2_basicInfo["title"] as? String{
+            title_item2.text = itm2_ttl;
+        }
+        if let itm3_ttl = item3_basicInfo["title"] as? String{
+            title_item3.text = itm3_ttl;
+        }
+        if let itm4_ttl = item4_basicInfo["title"] as? String{
+            title_item4.text = itm4_ttl;
+        }
+        
+        /* =========== Display prices for item (5) ============ */
+        
+        if let itm0_prc = item0_basicInfo["convertedCurrentPrice"] as? String{
+            var price_detail = "";
+            var shippingServiceCost = "";
+            var shippingType = "";
+            
+            if let shippingServiceCost_msg : AnyObject = item0_basicInfo["shippingServiceCost"]{
+                shippingServiceCost = shippingServiceCost_msg as! String;
+            }
+            if let shippingType_msg : AnyObject = item0_shippingInfo["shippingType"]{
+                shippingType = shippingType_msg as! String;
+            }
+            
+            if(shippingServiceCost == "0.0" || shippingType == "Free" || shippingServiceCost == ""){
+                price_detail = "(FREE Shipping)";
+            }else{
+                price_detail = "(+ $\(shippingServiceCost) Shipping)";
+            }
+            
+            price_item0.text = "Price: $\(itm0_prc) \(price_detail)";
+        }
+        
+        if let itm1_prc = item1_basicInfo["convertedCurrentPrice"] as? String{
+            var price_detail = "";
+            var shippingServiceCost = "";
+            var shippingType = "";
+            
+            if let shippingServiceCost_msg : AnyObject = item1_basicInfo["shippingServiceCost"]{
+                shippingServiceCost = shippingServiceCost_msg as! String;
+            }
+            if let shippingType_msg : AnyObject = item1_shippingInfo["shippingType"]{
+                shippingType = shippingType_msg as! String;
+            }
+            
+            if(shippingServiceCost == "0.0" || shippingType == "Free" || shippingServiceCost == ""){
+                price_detail = "(FREE Shipping)";
+            }else{
+                price_detail = "(+ $\(shippingServiceCost) Shipping)";
+            }
+            
+            price_item1.text = "Price: $\(itm1_prc) \(price_detail)";
+        }
+        
+        if let itm2_prc = item2_basicInfo["convertedCurrentPrice"] as? String{
+            var price_detail = "";
+            var shippingServiceCost = "";
+            var shippingType = "";
+            
+            if let shippingServiceCost_msg : AnyObject = item2_basicInfo["shippingServiceCost"]{
+                shippingServiceCost = shippingServiceCost_msg as! String;
+            }
+            if let shippingType_msg : AnyObject = item2_shippingInfo["shippingType"]{
+                shippingType = shippingType_msg as! String;
+            }
+            
+            if(shippingServiceCost == "0.0" || shippingType == "Free" || shippingServiceCost == ""){
+                price_detail = "(FREE Shipping)";
+            }else{
+                price_detail = "(+ $\(shippingServiceCost) Shipping)";
+            }
+            
+            price_item2.text = "Price: $\(itm2_prc) \(price_detail)";
+        }
+        
+        if let itm3_prc = item3_basicInfo["convertedCurrentPrice"] as? String{
+            var price_detail = "";
+            var shippingServiceCost = "";
+            var shippingType = "";
+            
+            if let shippingServiceCost_msg : AnyObject = item3_basicInfo["shippingServiceCost"]{
+                shippingServiceCost = shippingServiceCost_msg as! String;
+            }
+            if let shippingType_msg : AnyObject = item3_shippingInfo["shippingType"]{
+                shippingType = shippingType_msg as! String;
+            }
+            
+            if(shippingServiceCost == "0.0" || shippingType == "Free" || shippingServiceCost == ""){
+                price_detail = "(FREE Shipping)";
+            }else{
+                price_detail = "(+ $\(shippingServiceCost) Shipping)";
+            }
+            
+            price_item3.text = "Price: $\(itm3_prc) \(price_detail)";
+        }
+        
+        if let itm4_prc = item4_basicInfo["convertedCurrentPrice"] as? String{
+            var price_detail = "";
+            var shippingServiceCost = "";
+            var shippingType = "";
+            
+            if let shippingServiceCost_msg : AnyObject = item4_basicInfo["shippingServiceCost"]{
+                shippingServiceCost = shippingServiceCost_msg as! String;
+            }
+            if let shippingType_msg : AnyObject = item4_shippingInfo["shippingType"]{
+                shippingType = shippingType_msg as! String;
+            }
+            
+            if(shippingServiceCost == "0.0" || shippingType == "Free" || shippingServiceCost == ""){
+                price_detail = "(FREE Shipping)";
+            }else{
+                price_detail = "(+ $\(shippingServiceCost) Shipping)";
+            }
+            
+            price_item4.text = "Price: $\(itm4_prc) \(price_detail)";
+        }
+        
+        
+        
+        
+        /* =========== Display images for items (5) =========== */
+        
+        let tapGesture0 = UITapGestureRecognizer(target: self, action: "tapGesture0:");
+        let tapGesture1 = UITapGestureRecognizer(target: self, action: "tapGesture1:");
+        let tapGesture2 = UITapGestureRecognizer(target: self, action: "tapGesture2:");
+        let tapGesture3 = UITapGestureRecognizer(target: self, action: "tapGesture3:");
+        let tapGesture4 = UITapGestureRecognizer(target: self, action: "tapGesture4:");
         
         if let img0_url = NSURL(string: item0_basicInfo["galleryURL"] as! String){
             if let img0_data = NSData(contentsOfURL: img0_url){
