@@ -46,6 +46,12 @@ class DetailList: UITableViewController {
     @IBOutlet var label6: UILabel!
     @IBOutlet var detail6: UILabel!
     
+    @IBOutlet var icon1: UIImageView!
+    @IBOutlet var icon2: UIImageView!
+    @IBOutlet var icon3: UIImageView!
+    
+    
+    
     var item_basicInfo = NSDictionary();
     var item_sellerInfo = NSDictionary();
     var item_shippingInfo = NSDictionary();
@@ -201,7 +207,31 @@ class DetailList: UITableViewController {
 
         /* --- Handle tab display --- */
         
+        label1.text = "Category Name";
+        label2.text = "Condition";
+        label3.text = "Buying Format";
         
+        label4.text = "";
+        label5.text = "";
+        label6.text = "";
+        
+        detail4.text = "";
+        detail5.text = "";
+        detail6.text = "";
+        
+        icon1.image = UIImage();
+        icon2.image = UIImage();
+        icon3.image = UIImage();
+        
+        if let ctgy = item_basicInfo["categoryName"] as? String{
+            detail1.text = ctgy;
+        }
+        if let cdtn = item_basicInfo["conditionDisplayName"] as? String{
+            detail2.text = cdtn;
+        }
+        if let bfmt = item_basicInfo["listingType"] as? String{
+            detail3.text = bfmt;
+        }
         
         println("basic");
     }
@@ -223,6 +253,54 @@ class DetailList: UITableViewController {
         }
         
         button_record = 2;
+        
+        /* --- Handle tab display --- */
+        
+        label1.text = "User Name";
+        label2.text = "Feedback Score";
+        label3.text = "Positive Feedback";
+        label4.text = "Feedback Rating";
+        label5.text = "Top Rated";
+        label6.text = "Store";
+        
+        detail5.text = "";
+        icon1.image = UIImage();
+        icon3.image = UIImage();
+
+        
+        if let slun = item_sellerInfo["sellerUserName"] as? String{
+            detail1.text = slun;
+        }
+        if let fbs = item_sellerInfo["feedbackScore"] as? String{
+            detail2.text = fbs;
+        }
+        if let ptf = item_sellerInfo["positiveFeedbackPercent"] as? String{
+            detail3.text = ptf;
+        }
+        if let fbr = item_sellerInfo["feedbackRatingStar"] as? String{
+            detail4.text = fbr;
+        }
+        if let topRS = item_sellerInfo["topRatedSeller"] as? String{
+            if(topRS == "false"){
+                let topRatedSeller =  UIImage(named:"Pic/wrong.png");
+                
+                icon2.image = topRatedSeller;
+            }else{
+                let topRatedSeller =  UIImage(named:"Pic/checked.png");
+                
+                icon2.image = topRatedSeller;
+            }
+        }
+        if let ssn = item_sellerInfo["sellerStoreName"] as? String{
+            if(ssn == ""){
+                detail6.text = "N/A";
+            }else{
+                detail6.text = ssn;
+            }
+        
+        }
+        
+        
 
         
         println("seller");
@@ -245,6 +323,84 @@ class DetailList: UITableViewController {
         }
         
         button_record = 3;
+        
+        /* --- Handle tab display --- */
+        
+        label1.text = "Shipping Type";
+        label2.text = "Handling Time";
+        label3.text = "Shipping Locations";
+        label4.text = "Expedited Shpping";
+        label5.text = "One Day Shpping";
+        label6.text = "Returns Accepted";
+        
+        detail4.text = "";
+        detail5.text = "";
+        detail6.text = "";
+        
+        if let spt = item_shippingInfo["shippingType"] as? String{
+            let strArr = Array(spt);
+            var tempStr = "";
+            var result = "";
+
+            for(var i = 0; i < strArr.count; i++){
+                
+                var c = String(strArr[i]);
+                while(c.lowercaseString == c){
+                    tempStr += c;
+                    i++;
+                    if(i < strArr.count){
+                        c = String(strArr[i]);
+                    }else{
+                        break;
+                    }
+                }
+                tempStr += "," + c;
+            }
+            var tempStr1 = (tempStr as NSString).substringFromIndex(1);
+            result = (tempStr1 as NSString).substringToIndex(count(tempStr1) - 2);
+            
+            detail1.text = result;
+        }
+        if let hdt = item_shippingInfo["handlingTime"] as? String{
+            detail2.text = "\(hdt) day(s)";
+        }
+        if let stl = item_shippingInfo["shipToLocations"] as? String{
+            detail3.text = stl;
+        }
+        if let eps = item_shippingInfo["expeditedShipping"] as? String{
+            if(eps == "false"){
+                let exShipping =  UIImage(named:"Pic/wrong.png");
+                
+                icon1.image = exShipping;
+            }else{
+                let exShipping =  UIImage(named:"Pic/checked.png");
+                
+                icon1.image = exShipping;
+            }
+        }
+        if let ods = item_shippingInfo["oneDayShippingAvailable"] as? String{
+            if(ods == "false"){
+                let ondShipping =  UIImage(named:"Pic/wrong.png");
+                
+                icon2.image = ondShipping;
+            }else{
+                let ondShipping =  UIImage(named:"Pic/checked.png");
+                
+                icon2.image = ondShipping;
+            }
+        }
+        if let rtc = item_shippingInfo["returnsAccepted"] as? String{
+            if(rtc == "false"){
+                let returnAcc =  UIImage(named:"Pic/wrong.png");
+                
+                icon3.image = returnAcc;
+            }else{
+                let returnAcc =  UIImage(named:"Pic/checked.png");
+                
+                icon3.image = returnAcc;
+            }
+        }
+        
 
         println("shipping");
     }
