@@ -104,16 +104,21 @@ class DetailList: UITableViewController {
         
         /* ---  Display image --- */
         var image_url = NSURL();
-        
-        if let img_url = NSURL(string: (item_basicInfo["pictureURLSuperSize"] as? String)!){
-            
-            if(img_url == ""){
-                image_url = NSURL(string: (item_basicInfo["galleryURL"] as? String!)!)!;
-            }else{
-                image_url = img_url;
-            }
+        var url_str = item_basicInfo["pictureURLSuperSize"] as! String;
+        if(url_str == ""){
+            let img_url = NSURL(string: (item_basicInfo["galleryURL"] as! String));
+            image_url = img_url!;
             if let img_data = NSData(contentsOfURL: image_url){
                 item_img.image = UIImage(data: img_data);
+                println("b");
+            }
+        }else{
+            if let img_url = NSURL(string: (item_basicInfo["pictureURLSuperSize"] as! String)){
+                image_url = img_url;
+                if let img_data = NSData(contentsOfURL: image_url){
+                    item_img.image = UIImage(data: img_data);
+                    println("a");
+                }
             }
         }
         
