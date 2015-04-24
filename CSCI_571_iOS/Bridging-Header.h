@@ -8,13 +8,17 @@
 
 
 
-
 #ifndef CSCI_571_iOS_Bringing_Header_h
 #define CSCI_571_iOS_Bringing_Header_h
 
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import <FacebookSDK/FacebookSDK.h>
 
+#import <FBSDKShareKit/FBSDKShareLinkContent.h>
+#import <FBSDKShareKit/FBSDKShareDialog.h>
+#import <FBSDKShareKit/FBSDKShareAPI.h>
+#import <FBSDKShareKit/FBSDKShareOpenGraphAction.h>
 
 #endif

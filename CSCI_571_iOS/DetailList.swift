@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class DetailList: UITableViewController {
 
     @IBOutlet var item_img: UIImageView!
@@ -22,7 +23,6 @@ class DetailList: UITableViewController {
     
     @IBOutlet var buyNow_btn: UIButton!
     
-    @IBOutlet var FB_btn: UIButton!
     
     @IBOutlet var basicInfo_btn: UIButton!
     @IBOutlet var sellerInfo_btn: UIButton!
@@ -50,8 +50,11 @@ class DetailList: UITableViewController {
     @IBOutlet var icon2: UIImageView!
     @IBOutlet var icon3: UIImageView!
     
+    @IBOutlet var FB_btn: FBSDKShareButton!
     
     
+    
+//    @IBOutlet var fbLoginView: FBLoginView!
     var item_basicInfo = NSDictionary();
     var item_sellerInfo = NSDictionary();
     var item_shippingInfo = NSDictionary();
@@ -62,9 +65,31 @@ class DetailList: UITableViewController {
         super.viewDidLoad();
         
         initialization();
-        
         displayDetail();
+        
+        
+        var content = FBSDKShareLinkContent();
+        var fb_description = "";
+        
+        fb_description = item_price.text! + "," + item_location.text!;
+        
+        content.contentURL = NSURL(string: (item_basicInfo["viewItemURL"] as! String));
+        content.contentDescription = fb_description;
+        content.imageURL = NSURL(string: (item_basicInfo["galleryURL"] as! String));
+     
+        
+        if let fb_ttl = item_basicInfo["title"] as? String{
+            content.contentTitle = fb_ttl;
+        }
+       
+        FB_btn.shareContent = content;
+        
+        
+//        self.fbLoginView.delegate = self;
+//        self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends"];
+
     }
+
     
     func initialization(){
         label1.text = "";
@@ -410,6 +435,37 @@ class DetailList: UITableViewController {
         println("shipping");
     }
     
+    // Facebook Delegate Methods
+    
+//    func loginViewShowingLoggedInUser(loginView : FBLoginView!) {
+//        println("User Logged In")
+//    }
+//    
+//    func loginViewFetchedUserInfo(loginView : FBLoginView!, user: FBGraphUser) {
+//        println("User: \(user)")
+//        println("User ID: \(user.objectID)")
+//        println("User Name: \(user.name)")
+//        var userEmail = user.objectForKey("email") as! String
+//        println("User Email: \(userEmail)")
+//    }
+//    
+//    func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {
+//        println("User Logged Out")
+//    }
+//
+//    func loginView(loginView : FBLoginView!, handleError:NSError) {
+//        println("Error: \(handleError.localizedDescription)")
+//    }
+    
+    
+    func sharerDidCancel(sharer: AnyObject!) -> Void{
+        println("cancelled");
+    }
+    
+    
+    
+
+
     
 
     override func didReceiveMemoryWarning() {

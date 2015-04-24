@@ -17,9 +17,9 @@
 		EDCC307E1AE713FC006A9EBD /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC307B1AE713FC006A9EBD /* FBSDKLoginKit.framework */; };
 		EDCC307F1AE713FC006A9EBD /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC307C1AE713FC006A9EBD /* FBSDKShareKit.framework */; };
 		EDCC30821AE71B81006A9EBD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */; };
-		EDCC30861AE71DB2006A9EBD /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC30851AE71DB2006A9EBD /* Bolts.framework */; };
 		EDCC30881AE759C6006A9EBD /* DetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC30871AE759C6006A9EBD /* DetailList.swift */; };
 		EDCC308A1AE82FDC006A9EBD /* Pic in Resources */ = {isa = PBXBuildFile; fileRef = EDCC30891AE82FDC006A9EBD /* Pic */; };
+		EDCC30901AE9A771006A9EBD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC308F1AE9A771006A9EBD /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,9 +48,9 @@
 		EDCC307C1AE713FC006A9EBD /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		EDCC30801AE7158B006A9EBD /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		EDCC30851AE71DB2006A9EBD /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		EDCC30871AE759C6006A9EBD /* DetailList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailList.swift; sourceTree = "<group>"; };
 		EDCC30891AE82FDC006A9EBD /* Pic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pic; sourceTree = "<group>"; };
+		EDCC308F1AE9A771006A9EBD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Downloads/SwiftBook/SwiftBook/Frameworks/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDCC30861AE71DB2006A9EBD /* Bolts.framework in Frameworks */,
+				EDCC30901AE9A771006A9EBD /* FacebookSDK.framework in Frameworks */,
 				EDCC30821AE71B81006A9EBD /* FBSDKCoreKit.framework in Frameworks */,
 				EDCC307E1AE713FC006A9EBD /* FBSDKLoginKit.framework in Frameworks */,
 				EDCC307F1AE713FC006A9EBD /* FBSDKShareKit.framework in Frameworks */,
@@ -78,7 +78,7 @@
 		ED09605C1AE1B4C8008080EA = {
 			isa = PBXGroup;
 			children = (
-				EDCC30851AE71DB2006A9EBD /* Bolts.framework */,
+				EDCC308F1AE9A771006A9EBD /* FacebookSDK.framework */,
 				EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */,
 				EDCC307B1AE713FC006A9EBD /* FBSDKLoginKit.framework */,
 				EDCC307C1AE713FC006A9EBD /* FBSDKShareKit.framework */,
@@ -374,6 +374,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Weiwei/Documents/FacebookSDK,
+					/Users/Weiwei/Downloads/SwiftBook/SwiftBook/Frameworks,
 				);
 				INFOPLIST_FILE = CSCI_571_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -390,6 +391,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Weiwei/Documents/FacebookSDK,
+					/Users/Weiwei/Downloads/SwiftBook/SwiftBook/Frameworks,
 				);
 				INFOPLIST_FILE = CSCI_571_iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

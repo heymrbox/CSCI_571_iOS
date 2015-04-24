@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerViewDelegate{
     
     @IBOutlet var keywordText: UITextField!
     @IBOutlet var priceFromText: UITextField!
