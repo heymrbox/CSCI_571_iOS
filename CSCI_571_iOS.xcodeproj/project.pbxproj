@@ -19,7 +19,6 @@
 		EDCC30821AE71B81006A9EBD /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */; };
 		EDCC30881AE759C6006A9EBD /* DetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDCC30871AE759C6006A9EBD /* DetailList.swift */; };
 		EDCC308A1AE82FDC006A9EBD /* Pic in Resources */ = {isa = PBXBuildFile; fileRef = EDCC30891AE82FDC006A9EBD /* Pic */; };
-		EDCC30901AE9A771006A9EBD /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDCC308F1AE9A771006A9EBD /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +49,6 @@
 		EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		EDCC30871AE759C6006A9EBD /* DetailList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailList.swift; sourceTree = "<group>"; };
 		EDCC30891AE82FDC006A9EBD /* Pic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Pic; sourceTree = "<group>"; };
-		EDCC308F1AE9A771006A9EBD /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Downloads/SwiftBook/SwiftBook/Frameworks/FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDCC30901AE9A771006A9EBD /* FacebookSDK.framework in Frameworks */,
 				EDCC30821AE71B81006A9EBD /* FBSDKCoreKit.framework in Frameworks */,
 				EDCC307E1AE713FC006A9EBD /* FBSDKLoginKit.framework in Frameworks */,
 				EDCC307F1AE713FC006A9EBD /* FBSDKShareKit.framework in Frameworks */,
@@ -78,7 +75,6 @@
 		ED09605C1AE1B4C8008080EA = {
 			isa = PBXGroup;
 			children = (
-				EDCC308F1AE9A771006A9EBD /* FacebookSDK.framework */,
 				EDCC30811AE71B81006A9EBD /* FBSDKCoreKit.framework */,
 				EDCC307B1AE713FC006A9EBD /* FBSDKLoginKit.framework */,
 				EDCC307C1AE713FC006A9EBD /* FBSDKShareKit.framework */,
