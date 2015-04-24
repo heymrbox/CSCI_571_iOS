@@ -65,19 +65,19 @@ class DetailList: UITableViewController {
         super.viewDidLoad();
         
         initialization();
+        
         displayDetail();
         
         
         var content = FBSDKShareLinkContent();
         var fb_description = "";
         
-        fb_description = item_price.text! + "," + item_location.text!;
+        fb_description = item_price.text! + ", Location: " + item_location.text!;
         
         content.contentURL = NSURL(string: (item_basicInfo["viewItemURL"] as! String));
         content.contentDescription = fb_description;
         content.imageURL = NSURL(string: (item_basicInfo["galleryURL"] as! String));
      
-        
         if let fb_ttl = item_basicInfo["title"] as? String{
             content.contentTitle = fb_ttl;
         }
@@ -87,7 +87,7 @@ class DetailList: UITableViewController {
         
 //        self.fbLoginView.delegate = self;
 //        self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends"];
-
+        
     }
 
     
