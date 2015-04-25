@@ -85,9 +85,6 @@ class DetailList: UITableViewController {
         FB_btn.shareContent = content;
         
         
-//        self.fbLoginView.delegate = self;
-//        self.fbLoginView.readPermissions = ["public_profile", "email", "user_friends"];
-        
     }
 
     
