@@ -15,9 +15,4 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 
-#import <FBSDKShareKit/FBSDKShareLinkContent.h>
-#import <FBSDKShareKit/FBSDKShareDialog.h>
-#import <FBSDKShareKit/FBSDKShareAPI.h>
-#import <FBSDKShareKit/FBSDKShareOpenGraphAction.h>
-
 #endif

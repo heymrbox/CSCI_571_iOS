@@ -64,6 +64,8 @@ class DetailList: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         
+        FBSDKSharingDelegate.self;
+        
         initialization();
         
         displayDetail();
@@ -455,7 +457,7 @@ class DetailList: UITableViewController {
 //    }
     
     
-    func sharerDidCancel(sharer: AnyObject!) -> Void{
+    func sharerDidCancel(sharer: AnyObject) -> Void{
         println("cancelled");
     }
     
