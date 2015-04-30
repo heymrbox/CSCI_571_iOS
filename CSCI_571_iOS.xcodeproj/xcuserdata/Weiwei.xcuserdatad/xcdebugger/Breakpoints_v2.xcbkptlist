@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CSCI_571_iOS/DetailList.swift"
-            timestampString = "452036615.051791"
+            timestampString = "452072347.190905"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
             landmarkName = "sellerInfoClicked()"
             landmarkType = "5">
          </BreakpointContent>

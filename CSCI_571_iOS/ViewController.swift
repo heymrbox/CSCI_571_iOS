@@ -46,12 +46,17 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
         errorLabel.textColor = UIColor.redColor();
         errorLabel.numberOfLines = 5;
         
+        clearButton.selected = false;
+        submitButton.selected = false;
+        
         clearButton.addTarget(self, action: "clearForm", forControlEvents: UIControlEvents.TouchUpInside);
         submitButton.addTarget(self, action: "validation", forControlEvents: UIControlEvents.TouchUpInside);
     }
 
     
     func clearForm(){
+        clearButton.selected = true;
+        
         keywordText.text = "";
         priceFromText.text = "";
         priceToText.text = "";
@@ -60,6 +65,8 @@ class ViewController : UITableViewController, UIPickerViewDataSource, UIPickerVi
     }
     
     func validation(){
+        submitButton.selected = true;
+        
         let emptyKeyword = "Please enter a keyword\n";
         let notNumber = "Price should be valid decimal number\n";
         let notInteger = "Price should be positive integer\n";

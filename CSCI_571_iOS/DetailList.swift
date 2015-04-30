@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 
 class DetailList: UITableViewController {
@@ -50,7 +51,7 @@ class DetailList: UITableViewController {
     @IBOutlet var icon2: UIImageView!
     @IBOutlet var icon3: UIImageView!
     
-    @IBOutlet var FB_btn: FBSDKShareButton!
+    @IBOutlet var FB_btn: UIButton!
     
     
     
@@ -60,31 +61,31 @@ class DetailList: UITableViewController {
     var item_shippingInfo = NSDictionary();
     
     var button_record = 1;
+    var counter = 0;
     
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        FBSDKSharingDelegate.self;
+        FBSDKApplicationDelegate.self;
         
         initialization();
         
         displayDetail();
         
-        
-        var content = FBSDKShareLinkContent();
-        var fb_description = "";
-        
-        fb_description = item_price.text! + ", Location: " + item_location.text!;
-        
-        content.contentURL = NSURL(string: (item_basicInfo["viewItemURL"] as! String));
-        content.contentDescription = fb_description;
-        content.imageURL = NSURL(string: (item_basicInfo["galleryURL"] as! String));
-     
-        if let fb_ttl = item_basicInfo["title"] as? String{
-            content.contentTitle = fb_ttl;
-        }
-       
-        FB_btn.shareContent = content;
+//        var content = FBSDKShareLinkContent();
+//        var fb_description = "";
+//        
+//        fb_description = item_price.text! + ", Location: " + item_location.text!;
+//        
+//        content.contentURL = NSURL(string: (item_basicInfo["viewItemURL"] as! String));
+//        content.contentDescription = fb_description;
+//        content.imageURL = NSURL(string: (item_basicInfo["galleryURL"] as! String));
+//        
+//        if let fb_ttl = item_basicInfo["title"] as? String{
+//            content.contentTitle = fb_ttl;
+//        }
+//        
+//        FB_btn.shareContent = content;
         
         
     }
@@ -121,6 +122,11 @@ class DetailList: UITableViewController {
         
         shippingInfo_btn.selected = false;
         shippingInfo_btn.addTarget(self, action: "shippingInfoClicked", forControlEvents: UIControlEvents.TouchUpInside);
+        
+        let fb_img =  UIImage(named:"Pic/fb.png");
+        
+        FB_btn.setImage(fb_img, forState: UIControlState.Normal);
+        FB_btn.addTarget(self, action: "fbButtonClicked", forControlEvents: UIControlEvents.TouchUpInside);
     }
     
     
@@ -328,10 +334,7 @@ class DetailList: UITableViewController {
             }
         
         }
-        
-        
 
-        
         println("seller");
     }
     
@@ -434,32 +437,46 @@ class DetailList: UITableViewController {
         println("shipping");
     }
     
+    func fbButtonClicked(){
+        
+        var content = FBSDKShareLinkContent();
+        var fb_description = "";
+        
+        fb_description = item_price.text! + ", Location: " + item_location.text!;
+        
+        content.contentURL = NSURL(string: (item_basicInfo["viewItemURL"] as! String));
+        content.contentDescription = fb_description;
+        content.imageURL = NSURL(string: (item_basicInfo["galleryURL"] as! String));
+        
+        if let fb_ttl = item_basicInfo["title"] as? String{
+            content.contentTitle = fb_ttl;
+        }
+        
+        FBSDKShareDialog.showFromViewController(self, withContent: content, delegate: nil);
+    }
+    
     // Facebook Delegate Methods
     
-//    func loginViewShowingLoggedInUser(loginView : FBLoginView!) {
-//        println("User Logged In")
-//    }
-//    
-//    func loginViewFetchedUserInfo(loginView : FBLoginView!, user: FBGraphUser) {
-//        println("User: \(user)")
-//        println("User ID: \(user.objectID)")
-//        println("User Name: \(user.name)")
-//        var userEmail = user.objectForKey("email") as! String
-//        println("User Email: \(userEmail)")
-//    }
-//    
-//    func loginViewShowingLoggedOutUser(loginView : FBLoginView!) {
-//        println("User Logged Out")
-//    }
-//
-//    func loginView(loginView : FBLoginView!, handleError:NSError) {
-//        println("Error: \(handleError.localizedDescription)")
-//    }
-    
-    
-    func sharerDidCancel(sharer: AnyObject) -> Void{
-        println("cancelled");
+ 
+    func sharerDidCancel(sharer: FBSDKSharing!) -> Void{
+        println("Post cancelled");
     }
+    
+    func sharer(sharer: FBSDKSharing!, didCompleteWithResults results: [NSObject: AnyObject])
+    {
+        println("Post successfully")
+        // still cannot get post id
+    }
+    
+    func sharer(sharer: FBSDKSharing!, didFailWithError error: NSError!) {
+        
+        println("Post Error:")
+        println(error.description)
+        
+    }
+
+    
+
     
     
     
